@@ -13,20 +13,22 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Special+Elite&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Special+Elite&family=Marcellus&display=swap" rel="stylesheet" />
 
   <style>
     :root {
-      --espresso: #2c2420;   /* page bg + die-cut notch color */
-      --brass:    #b8893a;
-      --kraft:    #e9ddc4;
-      --kraft-2:  #efe4cb;
-      --maroon:   #7c2d2d;
-      --ink:      #2c2420;
-      --muted:    #5a4a38;
-      --rule:     #c9b48a;
-      --teal:     #3a6b66;
-      --cream:    #f3e6c8;
+      --espresso:   #2c2420;   /* page bg + die-cut notch color */
+      --brass:      #b8893a;
+      --kraft:      #e9ddc4;
+      --kraft-2:    #efe4cb;
+      --maroon:     #7c2d2d;
+      --near-black: #1c1a18;
+      --car-grey:   #c7c2b8;
+      --ink:        #2c2420;
+      --muted:      #5a4a38;
+      --rule:       #c9b48a;
+      --teal:       #3a6b66;
+      --cream:      #f3e6c8;
     }
 
     * { box-sizing: border-box; }
@@ -55,21 +57,21 @@
       overflow: hidden;
       box-shadow: 0 24px 60px rgba(0,0,0,.55);
     }
-    /* scalloped die-cut notches on left + right */
+    /* scalloped die-cut notches on top + bottom (3h) */
     .ticket::before,
     .ticket::after {
       content: "";
       position: absolute;
-      top: 0; bottom: 0;
-      width: 16px;
-      background: radial-gradient(7px at 8px 13px, var(--espresso) 98%, transparent 100%);
-      background-size: 16px 26px;
-      background-repeat: repeat-y;
+      left: 0; right: 0;
+      height: 16px;
+      background: radial-gradient(7px at 13px 8px, var(--espresso) 98%, transparent 100%);
+      background-size: 26px 16px;
+      background-repeat: repeat-x;
       pointer-events: none;
       z-index: 3;
     }
-    .ticket::before { left: 4px; }
-    .ticket::after  { right: 4px; }
+    .ticket::before { top: 4px; }
+    .ticket::after  { bottom: 4px; }
 
     .brass {
       margin: 12px;
@@ -85,67 +87,55 @@
       text-align: center;
     }
 
-    /* ---------- Header ---------- */
-    .name {
+    /* ---------- Header (single line) ---------- */
+    .headline {
       font-family: "Oswald", sans-serif;
       font-weight: 700;
       text-transform: uppercase;
-      letter-spacing: .34em;
-      font-size: clamp(2rem, 11vw, 2.8rem);
-      padding-left: .34em;
-      color: var(--maroon);
+      letter-spacing: .12em;
+      padding-left: .12em;
+      font-size: clamp(1.5rem, 7.5vw, 2.2rem);
       line-height: 1;
+      color: var(--maroon);
+      white-space: nowrap;
     }
+    .headline span { color: var(--near-black); }
     .ticketno {
       letter-spacing: .18em;
       font-size: .85rem;
       color: var(--brass);
-      margin-top: 9px;
+      margin-top: 10px;
     }
     .perf {
       border-top: 2px dashed var(--brass);
-      margin: 18px -2px 16px;
+      margin: 18px -2px 18px;
     }
 
-    /* ---------- Tram icon ---------- */
-    .tram { position: relative; width: 150px; height: 162px; margin: 0 auto 6px; }
-    .tram i { position: absolute; display: block; background: var(--espresso); }
-    .tram .w  { background: var(--kraft); }
-    .tram .chimney { left: 71px; top: 0;   width: 6px;   height: 22px; border-radius: 2px; }
-    .tram .body    { left: 18px; top: 20px; width: 114px; height: 130px; border-radius: 30px 30px 10px 10px; }
-    .tram .roof    { left: 52px; top: 30px; width: 46px;  height: 13px; border-radius: 2px; }
-    .tram .winL    { left: 30px; top: 52px; width: 38px;  height: 40px; border-radius: 4px; }
-    .tram .winR    { left: 82px; top: 52px; width: 38px;  height: 40px; border-radius: 4px; }
-    .tram .lampL   { left: 36px; top: 104px; width: 14px; height: 14px; border-radius: 50%; }
-    .tram .lampR   { left: 100px; top: 104px; width: 14px; height: 14px; border-radius: 50%; }
-    .tram .door    { left: 69px; top: 104px; width: 12px; height: 24px; border-radius: 2px; }
-    .tram .base    { left: 10px; top: 138px; width: 130px; height: 18px; border-radius: 0 0 6px 6px; }
-    .tram .wheelL  { left: 30px; top: 150px; width: 18px; height: 12px; border-radius: 0 0 4px 4px; }
-    .tram .wheelR  { left: 102px; top: 150px; width: 18px; height: 12px; border-radius: 0 0 4px 4px; }
-
-    /* ---------- Title ---------- */
-    .title {
-      font-family: "Oswald", sans-serif;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: .03em;
-      font-size: clamp(2.2rem, 12vw, 3rem);
-      line-height: 1;
-      color: var(--ink);
+    /* ---------- Pullman railcar (3h) ---------- */
+    .railcar { position: relative; width: 220px; height: 106px; margin: 0 auto 8px; }
+    .railcar i { position: absolute; display: block; }
+    .pennsylvania {
+      font-family: "Marcellus", serif;
+      letter-spacing: .16em;
+      font-size: .62rem;
+      color: var(--near-black);
+      padding-left: .16em;
     }
+
+    /* ---------- Title line ---------- */
     .tagline {
       display: inline-block;
       border-top: 1px solid var(--brass);
       border-bottom: 1px solid var(--brass);
-      padding: 6px 16px;
-      margin-top: 12px;
+      padding: 5px 14px;
+      margin-top: 6px;
       font-size: .82rem;
       letter-spacing: 1px;
       color: var(--muted);
     }
 
     /* ---------- Ruled sections ---------- */
-    .section { text-align: left; margin-top: 22px; }
+    .section { text-align: left; margin-top: 20px; }
     .shead {
       font-family: "Oswald", sans-serif;
       text-transform: uppercase;
@@ -160,19 +150,19 @@
       display: flex;
       justify-content: space-between;
       gap: 12px;
-      font-size: .92rem;
+      font-size: .9rem;
       margin-top: 4px;
     }
     .row span:last-child { text-align: right; color: var(--ink); }
-    .muted { color: var(--muted); font-size: .82rem; line-height: 1.5; margin-top: 8px; }
-    .addr { font-size: .92rem; line-height: 1.55; }
+    .muted { color: var(--muted); font-size: .8rem; line-height: 1.5; margin-top: 8px; }
+    .addr { font-size: .9rem; line-height: 1.55; }
 
-    ul.excursions { list-style: none; margin: 0; padding: 0; font-size: .9rem; line-height: 1.5; }
+    ul.excursions { list-style: none; margin: 0; padding: 0; font-size: .88rem; line-height: 1.5; }
     ul.excursions li { display: flex; gap: 9px; margin-top: 8px; }
     ul.excursions li::before { content: "—"; color: var(--maroon); }
 
     /* ---------- Pills + buttons ---------- */
-    .pills { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 12px; font-family: "Oswald", sans-serif; font-size: .68rem; letter-spacing: 1px; text-transform: uppercase; }
+    .pills { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 12px; font-family: "Oswald", sans-serif; font-size: .66rem; letter-spacing: 1px; text-transform: uppercase; }
     .pill { border: 1px solid var(--teal); color: var(--teal); padding: 4px 10px; }
 
     .maplink {
@@ -218,7 +208,7 @@
       letter-spacing: 3px;
       text-transform: uppercase;
       font-size: .74rem;
-      margin: 22px -24px 0;
+      margin: 20px -24px 0;
     }
 
     .signoff {
@@ -232,7 +222,7 @@
 
     @media (max-width: 380px) {
       .kraft { padding: 22px 18px 0; }
-      .band { margin: 22px -18px 0; }
+      .band { margin: 20px -18px 0; }
     }
   </style>
 </head>
@@ -242,28 +232,53 @@
     <div class="brass">
       <div class="kraft">
 
-        <!-- ===== Header ===== -->
-        <div class="name">TACO</div>
+        <!-- ===== Header: single line ===== -->
+        <div class="headline">Taco <span>Turns Two</span></div>
         <div class="ticketno">No. 0712-26</div>
         <div class="perf"></div>
 
-        <!-- ===== Tram ===== -->
-        <div class="tram" aria-hidden="true">
-          <i class="chimney"></i>
-          <i class="body"></i>
-          <i class="roof w"></i>
-          <i class="winL w"></i>
-          <i class="winR w"></i>
-          <i class="lampL w"></i>
-          <i class="lampR w"></i>
-          <i class="door w"></i>
-          <i class="base"></i>
-          <i class="wheelL"></i>
-          <i class="wheelR"></i>
+        <!-- ===== Pullman railcar (PENNSYLVANIA) ===== -->
+        <div class="railcar" aria-hidden="true">
+          <!-- clerestory raised roof -->
+          <i style="left:30px;top:8px;width:160px;height:6px;background:var(--car-grey);border-radius:4px 4px 0 0;"></i>
+          <!-- main roof -->
+          <i style="left:8px;top:13px;width:204px;height:11px;background:var(--car-grey);border-radius:12px 12px 3px 3px;"></i>
+          <!-- body -->
+          <i style="left:4px;top:22px;width:212px;height:58px;background:var(--maroon);border-radius:6px;"></i>
+          <!-- letterboard -->
+          <i style="left:4px;top:25px;width:212px;height:15px;background:var(--car-grey);display:flex;align-items:center;justify-content:center;">
+            <span class="pennsylvania">PENNSYLVANIA</span>
+          </i>
+          <!-- pinstripes -->
+          <i style="left:4px;top:43px;width:212px;height:2px;background:var(--car-grey);"></i>
+          <i style="left:4px;top:70px;width:212px;height:2px;background:var(--car-grey);"></i>
+          <!-- windows (9) -->
+          <i style="left:13px;top:48px;width:16px;height:18px;background:var(--near-black);border-radius:2px;"></i>
+          <i style="left:35px;top:48px;width:16px;height:18px;background:var(--near-black);border-radius:2px;"></i>
+          <i style="left:57px;top:48px;width:16px;height:18px;background:var(--near-black);border-radius:2px;"></i>
+          <i style="left:79px;top:48px;width:16px;height:18px;background:var(--near-black);border-radius:2px;"></i>
+          <i style="left:101px;top:48px;width:16px;height:18px;background:var(--near-black);border-radius:2px;"></i>
+          <i style="left:123px;top:48px;width:16px;height:18px;background:var(--near-black);border-radius:2px;"></i>
+          <i style="left:145px;top:48px;width:16px;height:18px;background:var(--near-black);border-radius:2px;"></i>
+          <i style="left:167px;top:48px;width:16px;height:18px;background:var(--near-black);border-radius:2px;"></i>
+          <i style="left:189px;top:48px;width:16px;height:18px;background:var(--near-black);border-radius:2px;"></i>
+          <!-- underframe -->
+          <i style="left:12px;top:80px;width:196px;height:8px;background:var(--near-black);border-radius:0 0 3px 3px;"></i>
+          <!-- trucks -->
+          <i style="left:34px;top:86px;width:46px;height:9px;background:var(--near-black);border-radius:3px;"></i>
+          <i style="left:140px;top:86px;width:46px;height:9px;background:var(--near-black);border-radius:3px;"></i>
+          <!-- wheels (6) -->
+          <i style="left:34px;top:88px;width:15px;height:15px;border-radius:50%;background:var(--near-black);box-shadow:inset 0 0 0 3px var(--car-grey);"></i>
+          <i style="left:50px;top:88px;width:15px;height:15px;border-radius:50%;background:var(--near-black);box-shadow:inset 0 0 0 3px var(--car-grey);"></i>
+          <i style="left:66px;top:88px;width:15px;height:15px;border-radius:50%;background:var(--near-black);box-shadow:inset 0 0 0 3px var(--car-grey);"></i>
+          <i style="left:140px;top:88px;width:15px;height:15px;border-radius:50%;background:var(--near-black);box-shadow:inset 0 0 0 3px var(--car-grey);"></i>
+          <i style="left:156px;top:88px;width:15px;height:15px;border-radius:50%;background:var(--near-black);box-shadow:inset 0 0 0 3px var(--car-grey);"></i>
+          <i style="left:172px;top:88px;width:15px;height:15px;border-radius:50%;background:var(--near-black);box-shadow:inset 0 0 0 3px var(--car-grey);"></i>
+          <!-- rail -->
+          <i style="left:-12px;right:-12px;top:101px;height:3px;background:var(--near-black);"></i>
         </div>
 
-        <!-- ===== Title ===== -->
-        <div class="title">Turns Two</div>
+        <!-- ===== Tagline ===== -->
         <div class="tagline">Chugga Chugga, Two Two</div>
 
         <!-- ===== Departure ===== -->
