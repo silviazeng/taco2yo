@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Taco is Turning TWO! 🚂</title>
+  <meta name="description" content="Join us to celebrate Taco's 2nd birthday — a train-themed party at Travel Town Museum, Los Angeles!" />
+
+  <!-- Social share preview -->
+  <meta property="og:title" content="Taco is Turning TWO! 🚂 Chugga Chugga, Two Two!" />
+  <meta property="og:description" content="Train-themed birthday party at Travel Town Museum, LA — Sunday, July 12, 2026, 2–4 PM." />
+  <meta property="og:type" content="website" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;700;800&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --red: #e63946;
+      --blue: #1d76c4;
+      --yellow: #ffcb2b;
+      --green: #2a9d5c;
+      --cream: #fdf6e9;
+      --ink: #2b2118;
+      --brown: #6b4423;
+      --shadow: 0 8px 24px rgba(43, 33, 24, 0.14);
+      --radius: 20px;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: "Nunito", system-ui, sans-serif;
+      color: var(--ink);
+      background: var(--cream);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    h1, h2, h3 { font-family: "Baloo 2", system-ui, sans-serif; line-height: 1.1; }
+
+    .wrap { max-width: 760px; margin: 0 auto; padding: 0 20px; }
+
+    /* ---------- Hero ---------- */
+    .hero {
+      text-align: center;
+      padding: 56px 20px 40px;
+      background:
+        radial-gradient(circle at 20% 20%, rgba(255,203,43,.35), transparent 45%),
+        radial-gradient(circle at 80% 30%, rgba(29,118,196,.25), transparent 45%),
+        var(--cream);
+      position: relative;
+    }
+    .hero .puff { font-size: clamp(2.4rem, 9vw, 4rem); animation: chug 2.6s ease-in-out infinite; display: inline-block; }
+    @keyframes chug {
+      0%, 100% { transform: translateX(-6px); }
+      50% { transform: translateX(6px); }
+    }
+    .hero h1 {
+      font-size: clamp(2.4rem, 9vw, 4.4rem);
+      font-weight: 800;
+      color: var(--red);
+      margin: 8px 0 4px;
+      text-shadow: 2px 3px 0 var(--yellow);
+    }
+    .hero .age {
+      display: inline-block;
+      font-family: "Baloo 2";
+      font-weight: 800;
+      font-size: clamp(3rem, 16vw, 6rem);
+      color: var(--blue);
+      line-height: 1;
+      margin: 6px 0;
+    }
+    .hero .tagline {
+      font-family: "Baloo 2";
+      font-weight: 700;
+      font-size: clamp(1.1rem, 4.5vw, 1.7rem);
+      color: var(--green);
+      letter-spacing: .5px;
+    }
+    .hero .sub { margin-top: 14px; font-size: 1.05rem; color: var(--ink); opacity: .85; }
+
+    .cta {
+      display: inline-block;
+      margin-top: 22px;
+      background: var(--red);
+      color: #fff;
+      font-family: "Baloo 2";
+      font-weight: 700;
+      font-size: 1.1rem;
+      text-decoration: none;
+      padding: 13px 30px;
+      border-radius: 999px;
+      box-shadow: var(--shadow);
+      transition: transform .15s ease, box-shadow .15s ease;
+    }
+    .cta:hover { transform: translateY(-2px) scale(1.02); box-shadow: 0 12px 30px rgba(230,57,70,.35); }
+
+    /* ---------- Track divider ---------- */
+    .track {
+      height: 22px;
+      margin: 0;
+      background:
+        repeating-linear-gradient(90deg, var(--brown) 0 14px, transparent 14px 30px) center/100% 6px no-repeat,
+        linear-gradient(var(--ink), var(--ink)) center top 2px/100% 3px no-repeat,
+        linear-gradient(var(--ink), var(--ink)) center bottom 2px/100% 3px no-repeat;
+    }
+
+    /* ---------- Cards ---------- */
+    section { padding: 40px 0; }
+    .card {
+      background: #fff;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 26px 24px;
+      border: 3px solid #fff;
+    }
+    .card + .card { margin-top: 22px; }
+
+    h2.label {
+      font-size: 1.6rem;
+      color: var(--blue);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 14px;
+    }
+    h2.label .emoji { font-size: 1.6rem; }
+
+    .when-grid { display: grid; gap: 6px; font-size: 1.15rem; }
+    .when-grid .big { font-family: "Baloo 2"; font-weight: 700; font-size: 1.5rem; color: var(--red); }
+    .note { font-size: .95rem; opacity: .8; margin-top: 10px; }
+
+    .where p { margin-bottom: 8px; }
+    .pill {
+      display: inline-block;
+      background: var(--yellow);
+      color: var(--ink);
+      font-weight: 700;
+      font-size: .85rem;
+      padding: 4px 12px;
+      border-radius: 999px;
+      margin: 4px 6px 4px 0;
+    }
+    .maplink {
+      display: inline-block;
+      margin-top: 10px;
+      background: var(--green);
+      color: #fff;
+      text-decoration: none;
+      font-family: "Baloo 2";
+      font-weight: 700;
+      padding: 10px 22px;
+      border-radius: 999px;
+      box-shadow: var(--shadow);
+    }
+    .maplink:hover { filter: brightness(1.05); }
+
+    ul.todo { list-style: none; display: grid; gap: 12px; }
+    ul.todo li {
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+      font-size: 1.08rem;
+    }
+    ul.todo li .ic { font-size: 1.5rem; flex-shrink: 0; line-height: 1.3; }
+    ul.todo li b { color: var(--blue); }
+
+    /* ---------- RSVP ---------- */
+    .rsvp { text-align: center; }
+    .rsvp .iframe-box {
+      margin-top: 16px;
+      border-radius: var(--radius);
+      overflow: hidden;
+      background: var(--cream);
+      border: 2px dashed var(--blue);
+    }
+    .rsvp iframe { width: 100%; min-height: 540px; border: 0; display: block; }
+    .placeholder {
+      padding: 40px 20px;
+      color: var(--brown);
+    }
+    .placeholder .big { font-family: "Baloo 2"; font-weight: 700; font-size: 1.3rem; color: var(--blue); }
+
+    /* ---------- Footer ---------- */
+    footer {
+      text-align: center;
+      padding: 34px 20px 48px;
+      color: var(--brown);
+    }
+    footer .train { font-size: 2rem; }
+    footer p { margin-top: 8px; font-size: .95rem; }
+
+    @media (max-width: 480px) {
+      .card { padding: 22px 18px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ===== HERO ===== -->
+  <header class="hero">
+    <div class="puff">🚂💨</div>
+    <h1>Taco is Turning</h1>
+    <div class="age">TWO!</div>
+    <div class="tagline">🎉 Chugga Chugga, Two Two! 🎉</div>
+    <p class="sub">All aboard for a train-themed 2nd birthday party!</p>
+    <a class="cta" href="#rsvp">🎟️ RSVP Now</a>
+  </header>
+
+  <div class="track"></div>
+
+  <main class="wrap">
+
+    <!-- ===== WHEN ===== -->
+    <section id="when">
+      <div class="card">
+        <h2 class="label"><span class="emoji">📅</span> When</h2>
+        <div class="when-grid">
+          <span class="big">Sunday, July 12, 2026</span>
+          <span class="big">2:00 – 4:00 PM</span>
+          <span>🎂 Cake time at <b>2:16 PM</b> — don't be late!</span>
+        </div>
+        <p class="note">The museum itself is open 10:00 AM – 5:00 PM, so feel free to come early or stay late to explore.</p>
+      </div>
+    </section>
+
+    <!-- ===== WHERE ===== -->
+    <section id="where">
+      <div class="card where">
+        <h2 class="label"><span class="emoji">📍</span> Where</h2>
+        <p><b>Travel Town Museum</b><br>5200 Zoo Drive, Griffith Park, Los Angeles, CA 90027</p>
+        <p>🚃 Find us at <b>the "Brown Railcar"</b> — that's our party spot! We'll have train tracks set up inside for the kids to play.</p>
+        <span class="pill">✅ Free Entry</span>
+        <span class="pill">🅿️ Free Parking</span>
+        <br>
+        <a class="maplink" href="https://www.google.com/maps/search/?api=1&query=Travel+Town+Museum,+5200+Zoo+Dr,+Los+Angeles,+CA+90027" target="_blank" rel="noopener">🗺️ Open in Google Maps</a>
+        <p class="note">Travel Town is free to all visitors and parking is always free. Donations to the museum are appreciated but not required.</p>
+      </div>
+    </section>
+
+    <!-- ===== THINGS TO DO ===== -->
+    <section id="todo">
+      <div class="card">
+        <h2 class="label"><span class="emoji">🎈</span> Things to Do</h2>
+        <ul class="todo">
+          <li><span class="ic">🎂</span><span><b>Cake time</b> at 2:16 PM — gather round and sing for Taco!</span></li>
+          <li><span class="ic">🛤️</span><span><b>Train tracks to play with</b> set up inside our brown railcar.</span></li>
+          <li><span class="ic">🚂</span><span><b>Miniature train ride</b> around the park — a Travel Town favorite! (Run by Griffith Park Train Rides — small fee, cash/card on site.)</span></li>
+          <li><span class="ic">🚉</span><span><b>Explore the museum's train tracks</b> and climb aboard the historic locomotives.</span></li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ===== RSVP ===== -->
+    <section id="rsvp">
+      <div class="card rsvp">
+        <h2 class="label" style="justify-content:center;"><span class="emoji">🎟️</span> RSVP</h2>
+        <p>Please let us know if you're coming! Tell us your <b>name</b>, <b>how many guests</b>, and any <b>food allergies</b>.</p>
+
+        <!--
+          ======================================================================
+          HOW TO ADD YOUR GOOGLE FORM:
+          1. Create your Google Form (suggested fields: Name, Number of guests,
+             Food allergies / dietary notes).
+          2. Click "Send" (top right) → the < > embed tab → copy the iframe.
+          3. DELETE the .placeholder <div> below and PASTE your <iframe> in its
+             place. Keep it inside the .iframe-box div so it stays styled.
+          Example of what you'll paste:
+          <iframe src="https://docs.google.com/forms/d/e/XXXXXXXX/viewform?embedded=true">Loading…</iframe>
+          ======================================================================
+        -->
+        <div class="iframe-box">
+          <div class="placeholder">
+            <p class="big">🚧 RSVP form coming soon!</p>
+            <p>The Google Form will be embedded right here.<br>(See the note in the HTML to add it.)</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <div class="track"></div>
+
+  <footer>
+    <div class="train">🚂🚃🚃🎂</div>
+    <p>We can't wait to celebrate Taco's big day with you!</p>
+    <p>Chugga chugga, two two! 💛</p>
+  </footer>
+
+</body>
+</html>
