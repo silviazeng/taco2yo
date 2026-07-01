@@ -454,6 +454,10 @@
             <button type="submit" class="rsvp-submit">All Aboard →</button>
           </form>
 
+          <p class="muted" id="rsvp-directlink" style="text-align:center; margin-top:10px;">
+            Prefer Google's form? <a href="https://forms.gle/VpPzJQqdZrHNtHsP6" target="_blank" rel="noopener" style="color:var(--maroon);">Open it here</a>
+          </p>
+
           <div class="rsvp-thanks" id="rsvp-thanks">
             <p class="big">✓ You're on the list!</p>
             <p style="margin:0;">Thanks for RSVPing — see you at the railcar.<br>Chugga chugga, two two! 💛</p>
@@ -540,7 +544,7 @@
       if (!form) return;
 
       function reveal(id) {
-        ["rsvp-form", "rsvp-intro-p"].forEach(function (x) {
+        ["rsvp-form", "rsvp-intro-p", "rsvp-directlink"].forEach(function (x) {
           var el = document.getElementById(x);
           if (el) el.style.display = "none";
         });
