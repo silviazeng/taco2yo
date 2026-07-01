@@ -181,23 +181,76 @@
     .maplink:hover { filter: brightness(1.12); transform: translateY(-1px); }
 
     /* ---------- RSVP ---------- */
-    .rsvp-intro { font-size: .9rem; line-height: 1.55; margin: 0 0 16px; text-align: center; }
-    .rsvp-btn {
+    .rsvp-intro { font-size: .9rem; line-height: 1.55; margin: 0 0 14px; text-align: center; }
+    .field { margin-top: 12px; }
+    .field.first { margin-top: 0; }
+    .field label {
       display: block;
-      text-align: center;
-      text-decoration: none;
+      font-family: "Oswald", sans-serif;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-size: .7rem;
+      color: var(--maroon);
+      margin-bottom: 5px;
+    }
+    .field .req { color: var(--brass); }
+    .rsvp-form input,
+    .rsvp-form select,
+    .rsvp-form textarea {
+      width: 100%;
+      font-family: "Special Elite", monospace;
+      font-size: .92rem;
+      color: var(--ink);
+      background: var(--kraft-2);
+      border: 1px solid var(--brass);
+      border-radius: 3px;
+      padding: 9px 10px;
+      -webkit-appearance: none;
+      appearance: none;
+    }
+    .rsvp-form textarea { resize: vertical; min-height: 62px; }
+    .rsvp-form select {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%237c2d2d' d='M6 8 0 0h12z'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 12px center;
+      padding-right: 30px;
+    }
+    .rsvp-form input:focus,
+    .rsvp-form select:focus,
+    .rsvp-form textarea:focus { outline: 2px solid var(--maroon); outline-offset: 1px; }
+    .counts { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .rsvp-submit {
+      width: 100%;
+      margin-top: 16px;
       cursor: pointer;
+      border: 0;
       background: var(--maroon);
       color: var(--cream);
       font-family: "Oswald", sans-serif;
       text-transform: uppercase;
       letter-spacing: 3px;
-      font-size: .9rem;
-      padding: 15px;
+      font-size: .82rem;
+      padding: 13px;
       border-radius: 3px;
       transition: filter .15s ease, transform .15s ease;
     }
-    .rsvp-btn:hover { filter: brightness(1.12); transform: translateY(-1px); }
+    .rsvp-submit:hover { filter: brightness(1.12); transform: translateY(-1px); }
+    .rsvp-submit:disabled { opacity: .6; cursor: default; }
+    .rsvp-thanks {
+      display: none;
+      text-align: center;
+      border: 2px dashed var(--brass);
+      background: var(--kraft-2);
+      padding: 28px 18px;
+    }
+    .rsvp-thanks .big {
+      font-family: "Oswald", sans-serif;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      font-size: 1.05rem;
+      color: var(--maroon);
+      margin: 0 0 6px;
+    }
     .rsvp-or {
       display: flex;
       align-items: center;
@@ -341,18 +394,69 @@
         <!-- ===== RSVP ===== -->
         <div class="section" id="rsvp">
           <div class="shead">RSVP</div>
-          <p class="rsvp-intro">Let us know your <b>name</b>, <b>headcount</b> (grown-ups &amp; kids), and any <b>allergies</b>.</p>
+          <p class="rsvp-intro">Let us know your <b>name</b>, <b>headcount</b>, and any <b>allergies</b> — no sign-in needed.</p>
 
-          <!-- Links out to the Google Form (Google handles the submission reliably).
-               To change the form later, update this href + the forms.gle link is https://forms.gle/VpPzJQqdZrHNtHsP6 -->
-          <a class="rsvp-btn" href="https://forms.gle/VpPzJQqdZrHNtHsP6" target="_blank" rel="noopener">Reserve Your Seats →</a>
+          <!--
+            Custom RSVP form → posts to the Google Form's formResponse endpoint via a hidden
+            iframe (no sign-in, no cookie banner, no page redirect).
+            Field mapping (from https://forms.gle/VpPzJQqdZrHNtHsP6):
+              entry.1335174812 = Your name (required)
+              entry.1498135098 = Number of grown-ups (1–3)
+              entry.1878892669 = Number of kids (0–3)
+              entry.1424661284 = Any allergies? (optional)
+            To change the form: update the action URL + entry.* names + the text/fallback links.
+          -->
+          <form class="rsvp-form" id="rsvp-form"
+                action="https://docs.google.com/forms/d/e/1FAIpQLSfZoSsS1-L05fkB8JAn5Ns_aM2fSnOlIeYkJoWKxQuDMtBVNA/formResponse"
+                method="POST" target="gform-sink"
+                onsubmit="window.__rsvpSubmitted=true;var b=this.querySelector('.rsvp-submit');b.disabled=true;b.textContent='Sending…';">
+            <div class="field first">
+              <label for="f-name">Your name <span class="req">*</span></label>
+              <input id="f-name" name="entry.1335174812" type="text" required autocomplete="name" />
+            </div>
+            <div class="counts">
+              <div class="field">
+                <label for="f-adults">Grown-ups <span class="req">*</span></label>
+                <select id="f-adults" name="entry.1498135098" required>
+                  <option value="" selected disabled></option>
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                </select>
+              </div>
+              <div class="field">
+                <label for="f-kids">Kids <span class="req">*</span></label>
+                <select id="f-kids" name="entry.1878892669" required>
+                  <option value="" selected disabled></option>
+                  <option value="0">0</option>
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                </select>
+              </div>
+            </div>
+            <div class="field">
+              <label for="f-allergies">Any allergies?</label>
+              <textarea id="f-allergies" name="entry.1424661284" placeholder="Optional — let us know"></textarea>
+            </div>
+            <button type="submit" class="rsvp-submit">All Aboard →</button>
+          </form>
 
-          <div class="rsvp-or">or</div>
+          <div class="rsvp-thanks" id="rsvp-thanks">
+            <p class="big">✓ You're on the list!</p>
+            <p style="margin:0;">Thanks for RSVPing — see you at the railcar.<br>Chugga chugga, two two! 💛</p>
+          </div>
 
-          <p class="rsvp-text">
+          <div class="rsvp-or" id="rsvp-or">or</div>
+
+          <p class="rsvp-text" id="rsvp-text">
             <span class="lbl">Just text us</span>
             <a href="sms:+13104358050">(310) 435-8050</a> &nbsp;·&nbsp; <a href="sms:+14243857596">(424) 385-7596</a>
           </p>
+
+          <!-- hidden target so submitting never navigates away -->
+          <iframe name="gform-sink" style="display:none" title="RSVP submission"
+                  onload="if(window.__rsvpSubmitted){['rsvp-form','rsvp-or','rsvp-text'].forEach(function(id){var el=document.getElementById(id);if(el)el.style.display='none';});var t=document.getElementById('rsvp-thanks');t.style.display='block';t.scrollIntoView({behavior:'smooth',block:'center'});}"></iframe>
         </div>
 
         <!-- ===== Footer band ===== -->
