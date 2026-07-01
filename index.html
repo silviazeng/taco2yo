@@ -180,6 +180,23 @@
     }
     .maplink:hover { filter: brightness(1.12); transform: translateY(-1px); }
 
+    .cal-btn {
+      display: inline-block;
+      margin-top: 12px;
+      cursor: pointer;
+      background: transparent;
+      border: 1px solid var(--maroon);
+      color: var(--maroon);
+      font-family: "Oswald", sans-serif;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      font-size: .72rem;
+      padding: 8px 16px;
+      border-radius: 3px;
+      transition: background .15s ease, color .15s ease, transform .15s ease;
+    }
+    .cal-btn:hover { background: var(--maroon); color: var(--cream); transform: translateY(-1px); }
+
     /* ---------- RSVP ---------- */
     .rsvp-intro { font-size: .9rem; line-height: 1.55; margin: 0 0 14px; text-align: center; }
     .field { margin-top: 12px; }
@@ -365,6 +382,7 @@
           <div class="row"><span>Date</span><span>Sun, Jul 12 2026</span></div>
           <div class="row"><span>Boarding</span><span>2:00 – 4:00 PM</span></div>
           <div class="row"><span>Cake</span><span>3:00 PM sharp</span></div>
+          <div><button type="button" class="cal-btn" onclick="addToCalendar()">📅 Add to Calendar</button></div>
           <p class="muted">Museum open 10 AM – 5 PM — come early or stay late to explore.</p>
         </div>
 
@@ -467,6 +485,55 @@
   </div>
 
   <p class="signoff">🚂 We can't wait to celebrate Taco's big day with you! 💛</p>
+
+  <script>
+    function addToCalendar() {
+      // 2:00–4:00 PM, Sun Jul 12 2026, America/Los_Angeles — universal .ics download
+      var lines = [
+        "BEGIN:VCALENDAR",
+        "VERSION:2.0",
+        "PRODID:-//Taco Turns Two//Birthday//EN",
+        "CALSCALE:GREGORIAN",
+        "METHOD:PUBLISH",
+        "BEGIN:VTIMEZONE",
+        "TZID:America/Los_Angeles",
+        "BEGIN:DAYLIGHT",
+        "TZOFFSETFROM:-0800",
+        "TZOFFSETTO:-0700",
+        "TZNAME:PDT",
+        "DTSTART:19700308T020000",
+        "RRULE:FREQ=YEARLY;BYMONTH=3;BYDAY=2SU",
+        "END:DAYLIGHT",
+        "BEGIN:STANDARD",
+        "TZOFFSETFROM:-0700",
+        "TZOFFSETTO:-0800",
+        "TZNAME:PST",
+        "DTSTART:19701101T020000",
+        "RRULE:FREQ=YEARLY;BYMONTH=11;BYDAY=1SU",
+        "END:STANDARD",
+        "END:VTIMEZONE",
+        "BEGIN:VEVENT",
+        "UID:taco-turns-two-2026@silviazeng.github.io",
+        "DTSTAMP:20260101T000000Z",
+        "DTSTART;TZID=America/Los_Angeles:20260712T140000",
+        "DTEND;TZID=America/Los_Angeles:20260712T160000",
+        "SUMMARY:Taco Turns Two 🚂",
+        "LOCATION:Travel Town Museum\\, 5200 Zoo Drive\\, Griffith Park\\, Los Angeles\\, CA 90027 (meet at the Brown Railcar)",
+        "DESCRIPTION:Chugga chugga\\, two two! Cake at 3:00 PM sharp. Free entry & parking. Details & RSVP: https://silviazeng.github.io/taco2yo/",
+        "END:VEVENT",
+        "END:VCALENDAR"
+      ];
+      var blob = new Blob([lines.join("\r\n")], { type: "text/calendar;charset=utf-8" });
+      var url = URL.createObjectURL(blob);
+      var a = document.createElement("a");
+      a.href = url;
+      a.download = "taco-turns-two.ics";
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      setTimeout(function () { URL.revokeObjectURL(url); }, 1000);
+    }
+  </script>
 
 </body>
 </html>
