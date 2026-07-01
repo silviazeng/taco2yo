@@ -88,6 +88,13 @@
     }
 
     /* ---------- Header (single line) ---------- */
+    .akaname {
+      font-family: "Special Elite", monospace;
+      font-size: .78rem;
+      letter-spacing: .05em;
+      color: var(--muted);
+      margin-bottom: 6px;
+    }
     .headline {
       font-family: "Oswald", sans-serif;
       font-weight: 700;
@@ -312,6 +319,7 @@
       <div class="kraft">
 
         <!-- ===== Header: single line ===== -->
+        <div class="akaname">Leo, aka</div>
         <div class="headline">Taco <span>Turns Two</span></div>
         <div class="ticketno">No. 0712-26</div>
         <div class="perf"></div>
@@ -372,7 +380,7 @@
         <!-- ===== Station ===== -->
         <div class="section">
           <div class="shead">Station</div>
-          <p class="addr">Travel Town Museum<br>5200 Zoo Drive, Griffith Park<br>Meet at the <b>Brown Railcar</b></p>
+          <p class="addr">Travel Town Museum<br>5200 Zoo Drive, Griffith Park<br>Meet at the <b>Pennsylvania Dining Car</b> (aka Brown Car)</p>
           <div class="pills">
             <span class="pill">Free Entry</span>
             <span class="pill">Free Parking</span>
@@ -397,7 +405,7 @@
         <!-- ===== RSVP ===== -->
         <div class="section" id="rsvp">
           <div class="shead">RSVP</div>
-          <p class="rsvp-intro" id="rsvp-intro-p">Let us know your <b>name</b>, <b>headcount</b>, and any <b>allergies</b> — no sign-in needed.</p>
+          <p class="rsvp-intro" id="rsvp-intro-p">Let us know your <b>name</b>, <b>headcount</b>, and any <b>allergies</b>.</p>
 
           <!--
             Custom RSVP form → posts to the Google Form's formResponse endpoint via a hidden
@@ -467,7 +475,7 @@
     </div>
   </div>
 
-  <p class="signoff">🚂 We can't wait to celebrate Taco's big day with you! 💛</p>
+  <p class="signoff">🚂 We can't wait to celebrate with you! – Zehao &amp; Silvia</p>
 
   <script>
     function addToCalendar() {
