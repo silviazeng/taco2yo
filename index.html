@@ -181,21 +181,46 @@
     .maplink:hover { filter: brightness(1.12); transform: translateY(-1px); }
 
     /* ---------- RSVP ---------- */
-    .rsvp-intro { font-size: .9rem; line-height: 1.55; margin: 0 0 12px; }
-    .iframe-box {
-      border: 2px dashed var(--brass);
-      background: var(--kraft-2);
-      overflow: hidden;
-    }
-    .iframe-box iframe { width: 100%; min-height: 600px; border: 0; display: block; background: #fff; }
-    .placeholder { padding: 34px 18px; color: var(--muted); text-align: center; }
-    .placeholder .big {
+    .rsvp-intro { font-size: .9rem; line-height: 1.55; margin: 0 0 16px; text-align: center; }
+    .rsvp-btn {
+      display: block;
+      text-align: center;
+      text-decoration: none;
+      cursor: pointer;
+      background: var(--maroon);
+      color: var(--cream);
       font-family: "Oswald", sans-serif;
       text-transform: uppercase;
-      letter-spacing: 2px;
-      font-size: 1rem;
+      letter-spacing: 3px;
+      font-size: .9rem;
+      padding: 15px;
+      border-radius: 3px;
+      transition: filter .15s ease, transform .15s ease;
+    }
+    .rsvp-btn:hover { filter: brightness(1.12); transform: translateY(-1px); }
+    .rsvp-or {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--muted);
+      font-size: .74rem;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      font-family: "Oswald", sans-serif;
+      margin: 16px 0;
+    }
+    .rsvp-or::before,
+    .rsvp-or::after { content: ""; flex: 1; height: 1px; background: var(--rule); }
+    .rsvp-text { text-align: center; font-size: .9rem; line-height: 1.7; }
+    .rsvp-text a { color: var(--maroon); text-decoration: none; font-weight: bold; white-space: nowrap; }
+    .rsvp-text .lbl {
+      display: block;
+      font-family: "Oswald", sans-serif;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-size: .7rem;
       color: var(--maroon);
-      margin: 0 0 8px;
+      margin-bottom: 4px;
     }
 
     /* ---------- Footer band ---------- */
@@ -316,19 +341,17 @@
         <!-- ===== RSVP ===== -->
         <div class="section" id="rsvp">
           <div class="shead">RSVP</div>
-          <p class="rsvp-intro">Kindly reply with your <b>name</b>, <b>number of guests</b>, and any <b>food allergies</b>.</p>
+          <p class="rsvp-intro">Let us know your <b>name</b>, <b>headcount</b> (grown-ups &amp; kids), and any <b>allergies</b>.</p>
 
-          <!-- Google Form embed. To change the form later, swap the src below
-               (short link https://forms.gle/VpPzJQqdZrHNtHsP6) and the fallback href. -->
-          <div class="iframe-box">
-            <iframe
-              src="https://docs.google.com/forms/d/e/1FAIpQLSfZoSsS1-L05fkB8JAn5Ns_aM2fSnOlIeYkJoWKxQuDMtBVNA/viewform?embedded=true"
-              title="Taco's 2nd birthday RSVP form"
-              loading="lazy">Loading…</iframe>
-          </div>
-          <p class="muted" style="text-align:center;">
-            Form not loading?
-            <a href="https://forms.gle/VpPzJQqdZrHNtHsP6" target="_blank" rel="noopener" style="color:var(--maroon);">Open the RSVP form in a new tab ↗</a>
+          <!-- Links out to the Google Form (Google handles the submission reliably).
+               To change the form later, update this href + the forms.gle link is https://forms.gle/VpPzJQqdZrHNtHsP6 -->
+          <a class="rsvp-btn" href="https://forms.gle/VpPzJQqdZrHNtHsP6" target="_blank" rel="noopener">Reserve Your Seats →</a>
+
+          <div class="rsvp-or">or</div>
+
+          <p class="rsvp-text">
+            <span class="lbl">Just text us</span>
+            <a href="sms:+13104358050">(310) 435-8050</a> &nbsp;·&nbsp; <a href="sms:+14243857596">(424) 385-7596</a>
           </p>
         </div>
 
