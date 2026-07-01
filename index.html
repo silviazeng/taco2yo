@@ -421,8 +421,7 @@
           -->
           <form class="rsvp-form" id="rsvp-form"
                 action="https://docs.google.com/forms/d/e/1FAIpQLSfZoSsS1-L05fkB8JAn5Ns_aM2fSnOlIeYkJoWKxQuDMtBVNA/formResponse"
-                method="POST" target="gform-sink"
-                onsubmit="window.__rsvpSubmitted=true;var b=this.querySelector('.rsvp-submit');b.disabled=true;b.textContent='Sending…';">
+                method="POST">
             <div class="field first">
               <label for="f-name">Your name <span class="req">*</span></label>
               <input id="f-name" name="entry.1335174812" type="text" required autocomplete="name" />
@@ -460,9 +459,16 @@
             <p style="margin:0;">Thanks for RSVPing — see you at the railcar.<br>Chugga chugga, two two! 💛</p>
           </div>
 
-          <!-- hidden target so submitting never navigates away -->
-          <iframe name="gform-sink" style="display:none" title="RSVP submission"
-                  onload="if(window.__rsvpSubmitted){['rsvp-form','rsvp-intro-p'].forEach(function(id){var el=document.getElementById(id);if(el)el.style.display='none';});var t=document.getElementById('rsvp-thanks');t.style.display='block';t.scrollIntoView({behavior:'smooth',block:'center'});}"></iframe>
+          <!-- shown if the background submission is blocked / offline / times out -->
+          <div class="rsvp-thanks" id="rsvp-fallback">
+            <p class="big">Hmm — that might not have gone through</p>
+            <p style="margin:0 0 14px;">Your browser may have blocked it. Please RSVP directly:</p>
+            <a class="maplink" href="https://forms.gle/VpPzJQqdZrHNtHsP6" target="_blank" rel="noopener">Open the RSVP form</a>
+            <p style="margin:14px 0 0;">or text us
+              <a href="sms:+13104358050" style="color:var(--maroon);">(310) 435-8050</a> ·
+              <a href="sms:+14243857596" style="color:var(--maroon);">(424) 385-7596</a>
+            </p>
+          </div>
         </div>
 
         <!-- ===== Footer contact ===== -->
@@ -526,6 +532,41 @@
       document.body.removeChild(a);
       setTimeout(function () { URL.revokeObjectURL(url); }, 1000);
     }
+
+    // RSVP: submit in the background, and detect network-level failures so we can
+    // prompt the guest to use the real form instead of silently "succeeding".
+    (function () {
+      var form = document.getElementById("rsvp-form");
+      if (!form) return;
+
+      function reveal(id) {
+        ["rsvp-form", "rsvp-intro-p"].forEach(function (x) {
+          var el = document.getElementById(x);
+          if (el) el.style.display = "none";
+        });
+        var t = document.getElementById(id);
+        t.style.display = "block";
+        t.scrollIntoView({ behavior: "smooth", block: "center" });
+      }
+
+      form.addEventListener("submit", function (e) {
+        e.preventDefault(); // native validation has already passed at this point
+        var btn = form.querySelector(".rsvp-submit");
+        btn.disabled = true;
+        btn.textContent = "Sending…";
+
+        // No fetch/AbortController (very old browser): fall back to the reliable form.
+        if (!window.fetch || !window.AbortController) { reveal("rsvp-fallback"); return; }
+
+        var body = new URLSearchParams(new FormData(form));
+        var controller = new AbortController();
+        var timer = setTimeout(function () { controller.abort(); }, 10000);
+
+        fetch(form.action, { method: "POST", mode: "no-cors", body: body, signal: controller.signal })
+          .then(function () { clearTimeout(timer); reveal("rsvp-thanks"); })
+          .catch(function () { clearTimeout(timer); reveal("rsvp-fallback"); });
+      });
+    })();
   </script>
 
 </body>
