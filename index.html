@@ -184,18 +184,17 @@
       display: inline-block;
       margin-top: 12px;
       cursor: pointer;
-      background: transparent;
-      border: 1px solid var(--maroon);
-      color: var(--maroon);
+      border: 0;
       font-family: "Oswald", sans-serif;
       text-transform: uppercase;
       letter-spacing: 1.5px;
       font-size: .72rem;
-      padding: 8px 16px;
-      border-radius: 3px;
-      transition: background .15s ease, color .15s ease, transform .15s ease;
+      color: var(--cream);
+      background: var(--maroon);
+      padding: 9px 18px;
+      transition: filter .15s ease, transform .15s ease;
     }
-    .cal-btn:hover { background: var(--maroon); color: var(--cream); transform: translateY(-1px); }
+    .cal-btn:hover { filter: brightness(1.12); transform: translateY(-1px); }
 
     /* ---------- RSVP ---------- */
     .rsvp-intro { font-size: .9rem; line-height: 1.55; margin: 0 0 14px; text-align: center; }
@@ -268,19 +267,6 @@
       color: var(--maroon);
       margin: 0 0 6px;
     }
-    .rsvp-or {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      color: var(--muted);
-      font-size: .74rem;
-      letter-spacing: 1px;
-      text-transform: uppercase;
-      font-family: "Oswald", sans-serif;
-      margin: 16px 0;
-    }
-    .rsvp-or::before,
-    .rsvp-or::after { content: ""; flex: 1; height: 1px; background: var(--rule); }
     .rsvp-text { text-align: center; font-size: .9rem; line-height: 1.7; }
     .rsvp-text a { color: var(--maroon); text-decoration: none; font-weight: bold; white-space: nowrap; }
     .rsvp-text .lbl {
@@ -293,17 +279,11 @@
       margin-bottom: 4px;
     }
 
-    /* ---------- Footer band ---------- */
-    .band {
-      background: var(--maroon);
-      color: var(--cream);
-      text-align: center;
-      padding: 14px 12px;
-      font-family: "Oswald", sans-serif;
-      letter-spacing: 3px;
-      text-transform: uppercase;
-      font-size: .74rem;
-      margin: 20px -24px 0;
+    /* ---------- Footer contact ---------- */
+    .foot-contact {
+      border-top: 2px dashed var(--brass);
+      margin: 22px -24px 0;
+      padding: 18px 24px 16px;
     }
 
     .signoff {
@@ -317,7 +297,7 @@
 
     @media (max-width: 380px) {
       .kraft { padding: 22px 18px 0; }
-      .band { margin: 20px -18px 0; }
+      .foot-contact { margin: 22px -18px 0; }
     }
   </style>
 </head>
@@ -412,7 +392,7 @@
         <!-- ===== RSVP ===== -->
         <div class="section" id="rsvp">
           <div class="shead">RSVP</div>
-          <p class="rsvp-intro">Let us know your <b>name</b>, <b>headcount</b>, and any <b>allergies</b> — no sign-in needed.</p>
+          <p class="rsvp-intro" id="rsvp-intro-p">Let us know your <b>name</b>, <b>headcount</b>, and any <b>allergies</b> — no sign-in needed.</p>
 
           <!--
             Custom RSVP form → posts to the Google Form's formResponse endpoint via a hidden
@@ -465,20 +445,18 @@
             <p style="margin:0;">Thanks for RSVPing — see you at the railcar.<br>Chugga chugga, two two! 💛</p>
           </div>
 
-          <div class="rsvp-or" id="rsvp-or">or</div>
-
-          <p class="rsvp-text" id="rsvp-text">
-            <span class="lbl">Just text us</span>
-            <a href="sms:+13104358050">(310) 435-8050</a> &nbsp;·&nbsp; <a href="sms:+14243857596">(424) 385-7596</a>
-          </p>
-
           <!-- hidden target so submitting never navigates away -->
           <iframe name="gform-sink" style="display:none" title="RSVP submission"
-                  onload="if(window.__rsvpSubmitted){['rsvp-form','rsvp-or','rsvp-text'].forEach(function(id){var el=document.getElementById(id);if(el)el.style.display='none';});var t=document.getElementById('rsvp-thanks');t.style.display='block';t.scrollIntoView({behavior:'smooth',block:'center'});}"></iframe>
+                  onload="if(window.__rsvpSubmitted){['rsvp-form','rsvp-intro-p'].forEach(function(id){var el=document.getElementById(id);if(el)el.style.display='none';});var t=document.getElementById('rsvp-thanks');t.style.display='block';t.scrollIntoView({behavior:'smooth',block:'center'});}"></iframe>
         </div>
 
-        <!-- ===== Footer band ===== -->
-        <div class="band">Please RSVP · All Aboard</div>
+        <!-- ===== Footer contact ===== -->
+        <div class="foot-contact">
+          <p class="rsvp-text">
+            <span class="lbl">Text us</span>
+            <a href="sms:+13104358050">(310) 435-8050</a> &nbsp;·&nbsp; <a href="sms:+14243857596">(424) 385-7596</a>
+          </p>
+        </div>
 
       </div>
     </div>
