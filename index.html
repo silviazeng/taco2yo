@@ -196,6 +196,10 @@
     }
     .cal-btn:hover { filter: brightness(1.12); transform: translateY(-1px); }
 
+    .btn-row { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 13px; }
+    .btn-row .maplink,
+    .btn-row .cal-btn { margin-top: 0; }
+
     /* ---------- RSVP ---------- */
     .rsvp-intro { font-size: .9rem; line-height: 1.55; margin: 0 0 14px; text-align: center; }
     .field { margin-top: 12px; }
@@ -362,7 +366,6 @@
           <div class="row"><span>Date</span><span>Sun, Jul 12 2026</span></div>
           <div class="row"><span>Boarding</span><span>2:00 – 4:00 PM</span></div>
           <div class="row"><span>Cake</span><span>3:00 PM sharp</span></div>
-          <div><button type="button" class="cal-btn" onclick="addToCalendar()">📅 Add to Calendar</button></div>
           <p class="muted">Museum open 10 AM – 5 PM — come early or stay late to explore.</p>
         </div>
 
@@ -374,8 +377,10 @@
             <span class="pill">Free Entry</span>
             <span class="pill">Free Parking</span>
           </div>
-          <a class="maplink" href="https://www.google.com/maps/search/?api=1&query=Travel+Town+Museum,+5200+Zoo+Dr,+Los+Angeles,+CA+90027" target="_blank" rel="noopener">View on Map →</a>
-          <p class="muted">Free to all visitors, parking always free. We'll have train tracks set up inside the railcar for the kids.</p>
+          <div class="btn-row">
+            <a class="maplink" href="https://www.google.com/maps/search/?api=1&query=Travel+Town+Museum,+5200+Zoo+Dr,+Los+Angeles,+CA+90027" target="_blank" rel="noopener">View on Map →</a>
+            <button type="button" class="cal-btn" onclick="addToCalendar()">📅 Add to Calendar</button>
+          </div>
         </div>
 
         <!-- ===== Excursions ===== -->
