@@ -318,24 +318,18 @@
           <div class="shead">RSVP</div>
           <p class="rsvp-intro">Kindly reply with your <b>name</b>, <b>number of guests</b>, and any <b>food allergies</b>.</p>
 
-          <!--
-            ======================================================================
-            HOW TO ADD YOUR GOOGLE FORM:
-            1. Create your Google Form (fields: Name, Number of guests,
-               Food allergies / dietary notes).
-            2. Click "Send" (top right) → the < > embed tab → copy the iframe.
-            3. DELETE the .placeholder <div> below and PASTE your <iframe> in its
-               place, keeping it inside the .iframe-box div so it stays styled.
-            Example:
-            <iframe src="https://docs.google.com/forms/d/e/XXXX/viewform?embedded=true">Loading…</iframe>
-            ======================================================================
-          -->
+          <!-- Google Form embed. To change the form later, swap the src below
+               (short link https://forms.gle/VpPzJQqdZrHNtHsP6) and the fallback href. -->
           <div class="iframe-box">
-            <div class="placeholder">
-              <p class="big">RSVP form coming soon</p>
-              <p style="margin:0;">The Google Form will be embedded right here.</p>
-            </div>
+            <iframe
+              src="https://docs.google.com/forms/d/e/1FAIpQLSfZoSsS1-L05fkB8JAn5Ns_aM2fSnOlIeYkJoWKxQuDMtBVNA/viewform?embedded=true"
+              title="Taco's 2nd birthday RSVP form"
+              loading="lazy">Loading…</iframe>
           </div>
+          <p class="muted" style="text-align:center;">
+            Form not loading?
+            <a href="https://forms.gle/VpPzJQqdZrHNtHsP6" target="_blank" rel="noopener" style="color:var(--maroon);">Open the RSVP form in a new tab ↗</a>
+          </p>
         </div>
 
         <!-- ===== Footer band ===== -->
